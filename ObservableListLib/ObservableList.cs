@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace ObservableListLib
 {
@@ -29,7 +28,6 @@ namespace ObservableListLib
         }
 
         #endregion
-
 
         #region ExportMethod
 
