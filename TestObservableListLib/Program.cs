@@ -4,13 +4,13 @@ using ObservableListLib;
 
 namespace TestObservableListLib
 {
-    class Program
+    internal static class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
             var list2 = new List<int>();
             
-            var list = new ObservableList<int>();
+            var list = new ObservableList<int>(new[] {1, 2, 3});
             list.Changed += ShowObservableList;
             list.Changed += observableList => list2 = observableList.ToList();
             
