@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservableListLib", "ObservableListLib\ObservableListLib.csproj", "{C8FE4CC9-7B37-4644-8BB9-B329EEB55D78}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestObservableListLib", "TestObservableListLib\TestObservableListLib.csproj", "{B3BB5120-69B7-417E-9B67-404518FEF1FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{C8FE4CC9-7B37-4644-8BB9-B329EEB55D78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8FE4CC9-7B37-4644-8BB9-B329EEB55D78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8FE4CC9-7B37-4644-8BB9-B329EEB55D78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3BB5120-69B7-417E-9B67-404518FEF1FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3BB5120-69B7-417E-9B67-404518FEF1FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3BB5120-69B7-417E-9B67-404518FEF1FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3BB5120-69B7-417E-9B67-404518FEF1FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
