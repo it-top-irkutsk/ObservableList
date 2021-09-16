@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace ObservableListLib
 {
-    public class ObservableList : ICloneable, ICollection<int>
+    public class ObservableList<T> : ICloneable, ICollection<T>
     {
         #region Variable
 
-        private List<int> _list;
+        private readonly List<T> _list;
 
-        public event Action<ObservableList> Changed; 
+        public event Action<ObservableList<T>> Changed; 
 
         public int Count { get; private set; }
         public bool IsReadOnly { get; init; }
@@ -21,19 +21,19 @@ namespace ObservableListLib
 
         public ObservableList()
         {
-            _list = new List<int>();
+            _list = new List<T>();
             Count = 0;
             IsReadOnly = false;
         }
 
-        public ObservableList(IEnumerable<int> list)
+        public ObservableList(IEnumerable<T> list)
         {
-            _list = new List<int>(list);
+            _list = new List<T>(list);
             Count = _list.Count;
             IsReadOnly = false;
         }
 
-        public ObservableList(ObservableList list)
+        public ObservableList(ObservableList<T> list)
         {
             _list = list.ToList();
             Count = list.Count;
@@ -44,7 +44,7 @@ namespace ObservableListLib
 
         #region ExportMethod
 
-        public void CopyTo(int[] array, int arrayIndex)
+        public void CopyTo(T[] array, int arrayIndex)
         {
             //TODO Сделать проверки
             for (int i = arrayIndex, j = 0; i < array.Length; i++, j++)
@@ -55,10 +55,10 @@ namespace ObservableListLib
         
         public object Clone()
         {
-            return new ObservableList(_list);
+            return new ObservableList<T>(_list);
         }
 
-        public List<int> ToList()
+        public List<T> ToList()
         {
             return _list;
         }
@@ -67,18 +67,18 @@ namespace ObservableListLib
 
         #region Methods
 
-        public void Add(int item)
+        public void Add(T item)
         {
             _list.Add(item);
             Count++;
-            Changed?.Invoke(new ObservableList(_list));
+            Changed?.Invoke(this);
         }
         
-        public bool Remove(int item) 
+        public bool Remove(T item) 
         {
             var res = _list.Remove(item);
             Count--;
-            Changed?.Invoke(new ObservableList(_list));
+            Changed?.Invoke(this);
             return res;
         }
 
@@ -86,14 +86,19 @@ namespace ObservableListLib
         {
             _list.Clear();
             Count = 0;
-            Changed?.Invoke(new ObservableList());
+            Changed?.Invoke(this);
         }
 
-        public bool Contains(int item) => _list.Contains(item);
+        public bool Contains(T item) => _list.Contains(item);
+
+        public void Sort()
+        {
+            _list.Sort();
+        }
 
         #endregion
         
-        public IEnumerator<int> GetEnumerator()
+        public IEnumerator<T> GetEnumerator()
         {
             //TODO Реализовать GetEnumerator()
             throw new NotImplementedException();
@@ -107,7 +112,7 @@ namespace ObservableListLib
 
         #region ForEach
 
-        public void ForEach(Action<int> action)
+        public void ForEach(Action<T> action)
         {
             foreach (var i in _list)
             {
@@ -115,7 +120,7 @@ namespace ObservableListLib
             }
         }
 
-        public void ForEach(Func<int, int> func)
+        public void ForEach(Func<T, T> func)
         {
             for (int i = 0; i < _list.Count; i++)
             {
